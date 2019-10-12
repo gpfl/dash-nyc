@@ -1,0 +1,55 @@
+<!-- index.html -->
+{% extends "layout.html" %}
+{% block content %}
+    <div id='nycmap' class="col-md-12">
+        <script>          
+            data = [
+            [311,10],
+            [404,5],
+            [203,20],
+            [308,65],
+            [106,30]
+            ]
+            
+            Highcharts.getJSON('https://raw.githubusercontent.com/dwillis/nyc-maps/master/community_districts.geojson', function (geojson) {
+
+                // Initiate the chart
+                Highcharts.mapChart('nycmap', {
+            
+                    title: {
+                        text: 'GeoJSON in Highmaps'
+                    },
+            
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+            
+                    colorAxis: {
+                        tickPixelInterval: 100
+                    },
+            
+                    series: [{
+                        mapData: geojson,
+                        keys: ['BoroCD', 'value'],
+                        joinBy: 'BoroCD',
+                        data: data,
+                        name: 'Random data',
+                        states: {
+                            hover: {
+                                color: '#BADA55'
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }]
+                });
+            });
+        </script> 
+  
+    </div>
+{% endblock %}
