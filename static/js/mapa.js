@@ -9,10 +9,11 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                         Highcharts.getJSON('static/combo_count.json', function (combo_count) {                  
 
                             //var xAxisCategories = ["Staten Island","Queens","Brooklyn","Manhattan","Bronx", null];
-                            var xAxisCategories = combo_boro.boro_name;
-                            var price_array = $.map(combo_boro['price'], function(e){ return e});
+                            //var xAxisCategories = combo_boro.boro_name;
+                            //var price_array = $.map(combo_boro['price'], function(e){ return e});
                             var combo = Highcharts.charts[2];
-                            var perc_rooms = new Array(25352, 22270, 1155);
+                            var zoom_btn = false;
+                            //var perc_rooms = new Array(25352, 22270, 1155);
 
                             Highcharts.mapChart('map', {
 
@@ -48,29 +49,45 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                         point: {
                                             events: {
                                                 select: function(e) {
-                                                    this.zoomTo();
-                                                    Highcharts.charts[3].mapZoom(4);
                                                     var text = this.ntaname;
                                                     var chart = this.series.chart;
-                                                    if(!chart.selectedLabel){
-                                                        if (!chart.lbl) {
-                                                            chart.lbl = chart.renderer.label(text, 100, 70)
-                                                                .attr({
-                                                                    padding: 10,
-                                                                    r: 5,
-                                                                    fill: Highcharts.getOptions().colors[1],
-                                                                    zIndex: 5
-                                                                })
-                                                                .css({
-                                                                    color: '#FFFFFF'
-                                                                })
-                                                                .add();
-                                                        } else {
-                                                            chart.lbl.attr({
-                                                                text: text
+                                                    var extremes = chart.yAxis[0].getExtremes();
+                                                    
+                                                    if(extremes.max == extremes.dataMax) {
+                                                        this.zoomTo();
+                                                        Highcharts.charts[3].mapZoom(4);    
+                                                    }
+                                                    if(!chart.lbl){
+                                                        chart.lbl = chart.renderer.label(text, 100, 70)
+                                                            .attr({
+                                                                padding: 10,
+                                                                r: 5,
+                                                                fill: Highcharts.getOptions().colors[1],
+                                                                zIndex: 5
                                                             })
-                                                            .show();
-                                                        }    
+                                                            .css({
+                                                                color: '#FFFFFF'
+                                                            })
+                                                            .add().show();
+                                                    } else {
+                                                        chart.lbl.attr({
+                                                            text: text
+                                                        }).show();
+                                                    }
+                                                    if(!zoom_btn){
+                                                        chart.renderer.button('Reset',700, 15)
+                                                            .attr({
+                                                                zIndex: 8
+                                                            })
+                                                            .on('click', function(e){
+                                                                chart.mapZoom(8);
+                                                                chart.series[0].data[0].select(false);
+                                                                chart.lbl.hide();
+                                                            })
+                                                            .add();
+                                                        zoom_btn = true;    
+                                                    }                                                                                             
+                                                    if(!chart.selectedLabel) {
                                                         combo.update({
                                                             chart: {
                                                                 spacingLeft: 100,
@@ -111,14 +128,6 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }, true);
                                                     }
                                                 },
-                                                unselect: function(e){
-                                                    var chart = this.series.chart;
-                                                    if (chart.lbl) {
-                                                        chart.lbl.hide();
-                                                    }
-                                                }
-
-                                               
                                             }
                                         },
                                     }
