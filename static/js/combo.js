@@ -3,7 +3,7 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
 
         //var boro_price = JSON.parse(combo_boro['price']);
         var price_array = $.map(combo_boro['price'], function(e){ return e});
-        var perc_rooms = new Array(51.98, 45.66, 2.37);
+        var perc_rooms = new Array(25352, 22270, 1155);
 
         Highcharts.chart('combo', {
             chart: {
@@ -13,6 +13,8 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
             credits: {
                 enabled: false
             },
+
+            colors: ['#6BB7B9','#F16664','#FFF6E6','#FDAF19','#767676'],
 
             title: {
                 text: ''
@@ -58,16 +60,7 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                     color: '#F0F0F0'
                 }
             },
-            labels: {
-                items: [{
-                    html: 'Tipos de Aluguel',
-                    style: {
-                        left: '70px',
-                        top: '15px',
-                        color: '#E0E0E3'
-                    }
-                }]
-            },
+            
             legend: {
                 backgroundColor: 'rgba(0, 0, 0, 0.2)',
                 itemStyle: {
@@ -104,7 +97,7 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                 marker: {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[3],
-                    fillColor: 'white'
+                    fillColor: '#cc8d14'
                 }
             }, {
                 type: 'pie',
@@ -112,21 +105,21 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                 data: [{
                     name: 'Apartamento',
                     y: perc_rooms[0],
-                    color: Highcharts.getOptions().colors[0]
+                    color: '#6BB7B9'
                 }, {
                     name: 'Quarto Privado',
                     y: perc_rooms[1],
-                    color: Highcharts.getOptions().colors[1]
+                    color: '#F16664'
                 }, {
                     name: 'Quarto Compartilhado',
                     y: perc_rooms[2],
-                    color: Highcharts.getOptions().colors[2]
+                    color: '#FFF6E6'
                 }],
-                center: [100, 50],
-                size: 70,
+                center: [60, 20],
+                size: 65,
                 tooltip: {
                     pointFormat: '<b>{point.y}</b><br/>',
-                    valueSuffix: '%'
+                    valueSuffix: ' anúncios'
                 },
                 showInLegend: false,
                 dataLabels: {
@@ -135,6 +128,59 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
             }]
         });
         var h2 =  window.innerHeight*(2/5);
-        Highcharts.charts[2].setSize(undefined, h2);                
+        Highcharts.charts[2].setSize(undefined, h2);
+
+        Highcharts.charts[2].renderer.button('Reset',500, 15)
+            .attr({
+                zIndex: 7
+            })
+            .on('click', function(e){
+                /*var p = this.series.chart.getSelectedPoints();
+                if(p.length > 0 && p[0].ntaname == this.ntaname) {
+                    alert("YO YO MA")
+                }*/
+                // Highcharts.charts[3].getSelectedPoints()[0].events.unselect()
+                    if (Highcharts.charts[3].lbl) {
+                        Highcharts.charts[3].lbl.hide();
+                    }
+                    Highcharts.charts[2].update({
+                        chart: {
+                            spacingLeft: 10,
+                            spacingRight: 10
+                        },
+                        xAxis: {
+                            categories: combo_boro.boro_name
+                        },
+                        legend: {
+                            x: 0
+                        },
+                        series: [{
+                            data: combo_bars[0]
+                        }, {
+                            data: combo_bars[1]
+                        }, {
+                            data: combo_bars[2]
+                        }, {
+                            data: price_array,
+                        }, {
+                            data: [{
+                                name: 'Apartamento',
+                                y: perc_rooms[0],
+                                color: '#6BB7B9'
+                            }, {
+                                name: 'Quarto Privado',
+                                y: perc_rooms[1],
+                                color: '#F16664'
+                            }, {
+                                name: 'Quarto Compartilhado',
+                                y: perc_rooms[2],
+                                color: '#FFF6E6'
+                            }],
+                            center: [60, 20]
+                        }]
+                    }, true);
+                    Highcharts.charts[2].mapZoom(8);
+            })
+            .add(); 
     });
 });
