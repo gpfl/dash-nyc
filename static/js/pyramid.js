@@ -11,6 +11,9 @@ Highcharts.chart('pyramid', {
     title: {
         text: '',
     },
+            
+    colors: ['#6BB7B9','#F16664','#FFF6E6','#FDAF19','#767676'],
+
     plotOptions: {
         series: {
                 /*allowPointSelect: true,
@@ -18,7 +21,7 @@ Highcharts.chart('pyramid', {
             dataLabels: {
                 enabled: true
             },
-            center: ['40%', '40%'],
+            center: ['50%', '40%'],
             height: '60%',
             width: '45%'
         }

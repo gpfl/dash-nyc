@@ -16,8 +16,8 @@ $('.row.no-gutters > [class*=" col-"]').css({
 });
 
 $('#sidebar').css({'background-color': 'rgba(0,0,0,0.2)',
-                    'margin-left': '-5%',
-                    'padding-left': '2%',
+                    'margin-left': '-4%',
+                    'padding-left': '4%',
                     'padding-right': '2%',
                     
                     'width': '45%'

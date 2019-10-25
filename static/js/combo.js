@@ -127,11 +127,10 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                 }
             }]
         });
-        var h2 =  window.innerHeight*(2/5);
-        console.log(h2)
+        var h2 =  window.innerHeight*(1/2);
         Highcharts.charts[2].setSize(null, h2);
 
-    Highcharts.charts[2].renderer.button('Reset',550, 15)
+    Highcharts.charts[2].renderer.button('Reset',530, 15)
         .attr({
             zIndex: 7
         })

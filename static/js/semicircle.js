@@ -15,6 +15,9 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
         credits: {
             enabled: false
         },
+        
+        colors: ['#6BB7B9','#F16664','#FFF6E6','#FDAF19','#767676'],
+
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
@@ -22,7 +25,7 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
             pie: {
                 dataLabels: {
                     enabled: true,
-                    distance: -50,
+                    distance: -40,
                     style: {
                         fontWeight: 'bold',
                         color: 'white'
@@ -31,13 +34,13 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
                 center: ['50%', '50%'],
                 startAngle: -150,
                 endAngle: 150,
-                size: '100%'
+                size: '80%'
             }
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
-            innerSize: '50%',
+            name: 'Anúncios',
+            innerSize: '60%',
             data: semicircle
         }]
     });
