@@ -1,5 +1,10 @@
 $('#charts').css({ 'background-color': '#007D8C' });
 
+$('#titulo').css({  'color': '#fff',
+                    'font-weight': 'bold',
+                    'background-color': 'rgba(0,0,0,.6',
+                    'padding': '10px' });
+
 $('.row.no-gutters').css({
     'margin-right': '0',
     'margin-left': '0'
