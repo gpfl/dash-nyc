@@ -127,51 +127,54 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                 }
             }]
         });
-        var h2 =  window.innerHeight*(1/2);
-        Highcharts.charts[2].setSize(null, h2);
+        var combo = Highcharts.charts[2];
+        var x_btn = combo.plotWidth - 5;
+        console.log(x_btn);
+        var h2 =  window.innerHeight*(2/5);
+        combo.setSize(null, h2);
 
-    Highcharts.charts[2].renderer.button('Reset',530, 15)
-        .attr({
-            zIndex: 7
-        })
-        .on('click', function(e){
-            Highcharts.charts[2].update({
-                chart: {
-                    spacingLeft: 10,
-                    spacingRight: 10
-                },
-                xAxis: {
-                    categories: combo_boro.boro_name
-                },
-                legend: {
-                    x: 0
-                },
-                series: [{
-                    data: combo_bars[0]
-                }, {
-                    data: combo_bars[1]
-                }, {
-                    data: combo_bars[2]
-                }, {
-                    data: price_array,
-                }, {
-                    data: [{
-                        name: 'Apartamento',
-                        y: perc_rooms[0],
-                        color: '#6BB7B9'
+        combo.renderer.button('Reset', x_btn, 15)
+            .attr({
+                zIndex: 7
+            })
+            .on('click', function(e){
+                Highcharts.charts[2].update({
+                    chart: {
+                        spacingLeft: 10,
+                        spacingRight: 10
+                    },
+                    xAxis: {
+                        categories: combo_boro.boro_name
+                    },
+                    legend: {
+                        x: 0
+                    },
+                    series: [{
+                        data: combo_bars[0]
                     }, {
-                        name: 'Quarto Privado',
-                        y: perc_rooms[1],
-                        color: '#F16664'
+                        data: combo_bars[1]
                     }, {
-                        name: 'Quarto Compartilhado',
-                        y: perc_rooms[2],
-                        color: '#FFF6E6'
-                    }],
-                    center: [60, 20]
-                }]
-            }, true);
-        })
-        .add(); 
+                        data: combo_bars[2]
+                    }, {
+                        data: price_array,
+                    }, {
+                        data: [{
+                            name: 'Apartamento',
+                            y: perc_rooms[0],
+                            color: '#6BB7B9'
+                        }, {
+                            name: 'Quarto Privado',
+                            y: perc_rooms[1],
+                            color: '#F16664'
+                        }, {
+                            name: 'Quarto Compartilhado',
+                            y: perc_rooms[2],
+                            color: '#FFF6E6'
+                        }],
+                        center: [60, 20]
+                    }]
+                }, true);
+            })
+            .add(); 
     });
 });

@@ -1,9 +1,37 @@
 $('#charts').css({ 'background-color': '#007D8C' });
 
-$('#titulo').css({  'color': '#fff',
-                    'font-weight': 'bold',
-                    'background-color': 'rgba(0,0,0,.6',
-                    'padding': '10px' });
+
+$('#sidebar').css({
+    'background-color': 'rgba(0,0,0,0.2)',
+    'margin-left': '-4%',
+    'padding-left': '4%',
+    'padding-right': '2%',
+    'width': '45%'
+});
+
+$('p').css({ 
+    'color': '#fff',
+    'font-size': '1.2em',
+    'font-style': 'italic',
+    'padding': '20px' 
+});
+
+$('#titulo').css({  
+    'display': 'inline-block',
+    'color': '#fff',
+    'font-weight': 'bold',
+    'background-color': 'rgba(0,0,0,.6',
+    'padding': '1.5%',
+    'margin': '1% 0 5% 0'
+});
+
+$('#indicadores').css({
+    'background-color': 'rgba(0,0,0,.2'
+});
+
+$('#semicircle').css({
+    'height':'17em'
+})
 
 $('.row.no-gutters').css({
     'margin-right': '0',
@@ -19,13 +47,3 @@ $('.row.no-gutters > [class*=" col-"]').css({
     'padding-right': '0',
     'padding-left': '0'
 });
-
-$('#sidebar').css({'background-color': 'rgba(0,0,0,0.2)',
-                    'margin-left': '-4%',
-                    'padding-left': '4%',
-                    'padding-right': '2%',
-                    
-                    'width': '45%'
-});
-
-$('#semicircle').css({'height':'17em'})

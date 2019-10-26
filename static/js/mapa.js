@@ -23,6 +23,15 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                     margin: [5,5,5,5]
                                 },
                                 
+                                subtitle: {
+                                    text: 'Clique nos bairros para ver detalhes',
+                                    align: 'left',
+                                    style: {
+                                        'color': '#fff',
+                                        'font-size': '1.2em',
+                                        'font-style': 'italic'
+                                    }
+                                },
                                 
                                 credits: {
                                     enabled: false
@@ -51,12 +60,13 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                 select: function(e) {
                                                     var text = this.ntaname;
                                                     var chart = this.series.chart;
-                                                    var extremes = chart.yAxis[0].getExtremes();
+                                                    var x_btn = chart.plotWidth - 120;
+                                                    var x_pie = combo.plotWidth - 350;
+                                                    //var extremes = chart.yAxis[0].getExtremes();
                                                     
-                                                    if(extremes.max == extremes.dataMax) {
-                                                        this.zoomTo();
-                                                        Highcharts.charts[3].mapZoom(4);    
-                                                    }
+                                                    this.zoomTo();
+                                                    Highcharts.charts[3].mapZoom(6);    
+                                                    
                                                     if(!chart.lbl){
                                                         chart.lbl = chart.renderer.label(text, 100, 70)
                                                             .attr({
@@ -75,7 +85,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }).show();
                                                     }
                                                     if(!zoom_btn){
-                                                        chart.renderer.button('Reset',700, 15)
+                                                        chart.renderer.button('Reset',x_btn, 15)
                                                             .attr({
                                                                 zIndex: 8
                                                             })
@@ -123,7 +133,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                                     y: combo_count[text].shared_room,
                                                                     color: '#FFF6E6'
                                                                 }],
-                                                                center: [230, 20]
+                                                                center: [x_pie, 20]
                                                             }]
                                                         }, true);
                                                     }
