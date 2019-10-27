@@ -108,6 +108,9 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[3],
                     fillColor: '#cc8d14'
+                },
+                tooltip: {
+                    valuePrefix: 'US$ '
                 }
             }, {
                 type: 'pie',
