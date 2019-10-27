@@ -78,12 +78,28 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                     } else {
                                                         var shared_room = combo_mean[text].shared_room;
                                                     }
+
+                                                    if (typeof combo_count[text].entire_apt == 'undefined') {
+                                                        var count_entire_apt = 0;
+                                                    } else {
+                                                        var count_entire_apt = combo_count[text].entire_apt;
+                                                    }
+                                                    if (typeof combo_count[text].private_room == 'undefined') {
+                                                        var count_private_room = 0;
+                                                    } else {
+                                                        var count_private_room = combo_count[text].private_room;
+                                                    }
+                                                    if (typeof combo_count[text].shared_room == 'undefined') {
+                                                        var count_shared_room = 0;
+                                                    } else {
+                                                        var count_shared_room = combo_count[text].shared_room;
+                                                    }
                                                     
                                                     this.zoomTo();
                                                     Highcharts.charts[3].mapZoom(6);    
-                                                    var total_anuncios = combo_count[text].entire_apt +
-                                                                        combo_count[text].private_room +
-                                                                        combo_count[text].shared_room;
+                                                    var total_anuncios = count_entire_apt +
+                                                                        count_private_room +
+                                                                        count_shared_room;
                                                     var lbl_text = '<b>' + text + '</b>';
                                                     var lbl2_text = 'Total de anúncios: <b>' + total_anuncios + '</b>';
                                                     
@@ -188,15 +204,15 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                             }, {
                                                                 data: [{
                                                                     name: 'Apartamento',
-                                                                    y: combo_count[text].entire_apt,
+                                                                    y: count_entire_apt,
                                                                     color: '#6BB7B9'
                                                                 }, {
                                                                     name: 'Quarto Privado',
-                                                                    y: combo_count[text].private_room,
+                                                                    y: count_private_room,
                                                                     color: '#F16664'
                                                                 }, {
                                                                     name: 'Quarto Compartilhado',
-                                                                    y: combo_count[text].shared_room,
+                                                                    y: count_shared_room,
                                                                     color: '#FFF6E6'
                                                                 }],
                                                                 center: [5, 20]
