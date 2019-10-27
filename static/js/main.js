@@ -9,23 +9,18 @@ $('#sidebar').css({
     'width': '45%'
 });
 
-$('p').css({ 
-    'color': '#fff',
-    'font-size': '1.2em',
-    'font-style': 'italic',
-    'padding': '20px' 
-});
-
 $('#titulo').css({  
     'display': 'inline-block',
     'color': '#fff',
     'font-weight': 'bold',
     'background-color': 'rgba(0,0,0,.6',
     'padding': '1.5%',
-    'margin': '1% 0 5% 0'
+    'margin': '1% 0 1% 0'
 });
 
 $('#indicadores').css({
+    'margin-top': '2%',
+    'padding': '0 10% 0 13%',
     'background-color': 'rgba(0,0,0,.2'
 });
 

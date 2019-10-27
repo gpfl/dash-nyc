@@ -61,14 +61,38 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                     var text = this.ntaname;
                                                     var chart = this.series.chart;
                                                     var x_btn = chart.plotWidth - 120;
-                                                    var x_pie = combo.plotWidth - 350;
                                                     //var extremes = chart.yAxis[0].getExtremes();
+
+                                                    if (typeof combo_mean[text].entire_apt == 'undefined') {
+                                                        var entire_apt = 0;
+                                                    } else {
+                                                        var entire_apt = combo_mean[text].entire_apt;
+                                                    }
+                                                    if (typeof combo_mean[text].private_room == 'undefined') {
+                                                        var private_room = 0;
+                                                    } else {
+                                                        var private_room = combo_mean[text].private_room;
+                                                    }
+                                                    if (typeof combo_mean[text].shared_room == 'undefined') {
+                                                        var shared_room = 0;
+                                                    } else {
+                                                        var shared_room = combo_mean[text].shared_room;
+                                                    }
                                                     
                                                     this.zoomTo();
                                                     Highcharts.charts[3].mapZoom(6);    
+                                                    var total_anuncios = combo_count[text].entire_apt +
+                                                                        combo_count[text].private_room +
+                                                                        combo_count[text].shared_room;
+                                                    var lbl_text = '<b>' + text + '</b>';
+                                                    var lbl2_text = 'Total de anúncios: <b>' + total_anuncios + '</b>';
                                                     
+                                                    var lbl3_text = 'Apartamentos: <b>US$' + entire_apt + '<b><br/>' +
+                                                        'Quartos privados: <b>US$' + private_room + '<b><br/>' +
+                                                        'Quartos Compartilhados: <b>US$' + shared_room + '<b><br/>';
+
                                                     if(!chart.lbl){
-                                                        chart.lbl = chart.renderer.label(text, 100, 70)
+                                                        chart.lbl = chart.renderer.label(lbl_text, 50, 50)
                                                             .attr({
                                                                 padding: 10,
                                                                 r: 5,
@@ -76,14 +100,54 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                                 zIndex: 5
                                                             })
                                                             .css({
-                                                                color: '#FFFFFF'
+                                                                'color': '#FFFFFF',
+                                                                'font-size': '1.2em'
                                                             })
                                                             .add().show();
                                                     } else {
                                                         chart.lbl.attr({
-                                                            text: text
+                                                            text: lbl_text
                                                         }).show();
                                                     }
+                                                    if(!chart.lbl2){
+                                                        chart.lbl2 = chart.renderer.label(lbl2_text, 50, 90)
+                                                            .attr({
+                                                                padding: 10,
+                                                                r: 5,
+                                                                fill: Highcharts.getOptions().colors[1],
+                                                                zIndex: 5
+                                                            })
+                                                            .css({
+                                                                'color': '#dedcdc',
+                                                                'font-size': '1.1em',
+                                                                'line-height': '1.6'
+                                                            })
+                                                            .add().show();
+                                                    } else {
+                                                        chart.lbl2.attr({
+                                                            text: lbl2_text
+                                                        }).show();
+                                                    }
+                                                    if(!chart.lbl3){
+                                                        chart.lbl3 = chart.renderer.label(lbl3_text, 50, 130)
+                                                            .attr({
+                                                                padding: 10,
+                                                                r: 5,
+                                                                fill: Highcharts.getOptions().colors[1],
+                                                                zIndex: 5
+                                                            })
+                                                            .css({
+                                                                'color': '#dedcdc',
+                                                                'font-size': '1.1em',
+                                                                'line-height': '1.6'
+                                                            })
+                                                            .add().show();
+                                                    } else {
+                                                        chart.lbl3.attr({
+                                                            text: lbl3_text
+                                                        }).show();
+                                                    }
+                                                    
                                                     if(!zoom_btn){
                                                         chart.renderer.button('Reset',x_btn, 15)
                                                             .attr({
@@ -93,6 +157,8 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                                 chart.mapZoom(8);
                                                                 chart.series[0].data[0].select(false);
                                                                 chart.lbl.hide();
+                                                                chart.lbl2.hide();
+                                                                chart.lbl3.hide();
                                                             })
                                                             .add();
                                                         zoom_btn = true;    
@@ -110,15 +176,15 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                                 x: 0
                                                             },
                                                             series: [{
-                                                                data: [combo_mean[text].entire_apt]
+                                                                data: [entire_apt]
                                                             }, {
-                                                                data: [combo_mean[text].private_room]
+                                                                data: [private_room]
                                                             }, {
-                                                                data: [combo_mean[text].shared_room]
+                                                                data: [shared_room]
                                                             }, {
-                                                                data: [(combo_mean[text].entire_apt +
-                                                                    combo_mean[text].private_room +
-                                                                    combo_mean[text].shared_room)/3],
+                                                                data: [(entire_apt +
+                                                                    private_room +
+                                                                    shared_room)/3],
                                                             }, {
                                                                 data: [{
                                                                     name: 'Apartamento',
@@ -133,7 +199,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                                     y: combo_count[text].shared_room,
                                                                     color: '#FFF6E6'
                                                                 }],
-                                                                center: [x_pie, 20]
+                                                                center: [5, 20]
                                                             }]
                                                         }, true);
                                                     }

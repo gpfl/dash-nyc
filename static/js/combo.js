@@ -55,6 +55,7 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
                 }
             },
             tooltip: {
+                valueDecimals: 2,
                 backgroundColor: 'rgba(0, 0, 0, 0.85)',
                 style: {
                     color: '#F0F0F0'
@@ -81,15 +82,24 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
             series: [{
                 type: 'column',
                 name: 'Apartamento',
-                data: combo_bars[0]
+                data: combo_bars[0],
+                tooltip: {
+                    valuePrefix: 'US$ '
+                }
             }, {
                 type: 'column',
                 name: 'Quarto Privado',
-                data: combo_bars[1]
+                data: combo_bars[1],
+                tooltip: {
+                    valuePrefix: 'US$ '
+                }
             }, {
                 type: 'column',
                 name: 'Quarto Compartilhado',
-                data: combo_bars[2]
+                data: combo_bars[2],
+                tooltip: {
+                    valuePrefix: 'US$ '
+                }
             }, {
                 type: 'spline',
                 name: 'Média',

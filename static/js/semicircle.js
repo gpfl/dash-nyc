@@ -11,6 +11,10 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
             text: 'Boroughs',
             align: 'center',
             verticalAlign: 'middle',
+            style: {
+                'color': '#fff',
+                'weight': 'bold'
+            }
         },
         credits: {
             enabled: false
@@ -25,6 +29,7 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
             pie: {
                 dataLabels: {
                     enabled: true,
+                    allowOverlap: true,
                     distance: -40,
                     style: {
                         fontWeight: 'bold',
@@ -34,7 +39,7 @@ Highcharts.getJSON('static/semicircle.json', function (semicircle) {
                 center: ['50%', '50%'],
                 startAngle: -150,
                 endAngle: 150,
-                size: '80%'
+                size: '110%'
             }
         },
         series: [{
