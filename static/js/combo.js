@@ -142,7 +142,6 @@ Highcharts.getJSON('static/combo_boro.json', function (combo_boro) {
         });
         var combo = Highcharts.charts[2];
         var x_btn = combo.plotWidth - 5;
-        console.log(x_btn);
         var h2 =  window.innerHeight*(2/5);
         combo.setSize(null, h2);
 

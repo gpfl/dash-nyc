@@ -1,5 +1,4 @@
 Highcharts.getJSON('static/piramide.json', function(piramide){
-    console.log(piramide['count'])
 
     Highcharts.chart('pyramid', {
         chart: {
