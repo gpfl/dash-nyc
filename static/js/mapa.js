@@ -126,7 +126,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }).show();
                                                     }
                                                     if(!chart.lbl2){
-                                                        chart.lbl2 = chart.renderer.label(lbl2_text, 50, 90)
+                                                        chart.lbl2 = chart.renderer.label(lbl2_text, 50, 100)
                                                             .attr({
                                                                 padding: 10,
                                                                 r: 5,
@@ -145,7 +145,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }).show();
                                                     }
                                                     if(!chart.lbl3){
-                                                        chart.lbl3 = chart.renderer.label(lbl3_text, 50, 130)
+                                                        chart.lbl3 = chart.renderer.label(lbl3_text, 50, 150)
                                                             .attr({
                                                                 padding: 10,
                                                                 r: 5,
