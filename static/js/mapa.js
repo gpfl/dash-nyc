@@ -111,7 +111,7 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         chart.lbl = chart.renderer.label(lbl_text, 50, 50)
                                                             .attr({
                                                                 padding: 10,
-                                                                r: 5,
+                                                                r: 0,
                                                                 fill: Highcharts.getOptions().colors[1],
                                                                 zIndex: 5
                                                             })
@@ -126,10 +126,10 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }).show();
                                                     }
                                                     if(!chart.lbl2){
-                                                        chart.lbl2 = chart.renderer.label(lbl2_text, 50, 100)
+                                                        chart.lbl2 = chart.renderer.label(lbl2_text, 50, 95)
                                                             .attr({
                                                                 padding: 10,
-                                                                r: 5,
+                                                                r: 0,
                                                                 fill: Highcharts.getOptions().colors[1],
                                                                 zIndex: 5
                                                             })
@@ -145,10 +145,10 @@ Highcharts.getJSON('static/nyc-neigh.geo.json', function (geojson) {
                                                         }).show();
                                                     }
                                                     if(!chart.lbl3){
-                                                        chart.lbl3 = chart.renderer.label(lbl3_text, 50, 150)
+                                                        chart.lbl3 = chart.renderer.label(lbl3_text, 50, 140)
                                                             .attr({
                                                                 padding: 10,
-                                                                r: 5,
+                                                                r: 0,
                                                                 fill: Highcharts.getOptions().colors[1],
                                                                 zIndex: 5
                                                             })
